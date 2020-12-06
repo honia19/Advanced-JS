@@ -60,6 +60,7 @@ let user = {
 function wrap(target) {
   return new Proxy(target, {
       get(proxyTarget, property, receiver) {
+        console.log(receiver)
         if (property in proxyTarget) {
           return Reflect.get(proxyTarget, property, receiver);
         } else {
@@ -69,9 +70,9 @@ function wrap(target) {
   });
 }
 
-// user = wrap(user);
+user = wrap(user);
 
-// console.log(user.name); // John
+console.log(user.name); // John
 // console.log(user.age); // Error, this property is absent
 
 
